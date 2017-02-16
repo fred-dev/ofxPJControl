@@ -45,15 +45,27 @@ public:
 	//methods
 	void On(); //command to turn the projector off
 	void Off(); //command to turn the projector on
-	void sendPJLinkCommand(string command); //send any PJLink command to the projector
+	string mute();
+	string unmute();
+	string getStatus();
+	string setInput(int type, int input);
+
+	string sendPJLinkCommand(string command); //send any PJLink command to the projector
 	void setup(string IP_add="192.168.0.100",int port = 4352, int protocol=PJLINK_MODE, string password=""); //default
 	void setProjectorType(int protocol); //NEC_MODE or PJLINK_MODE
 	void setProjectorIP(string IP_add); //the network IP of the projector
     void setProjectorPassword(string passwd); //password for PJLink authentication
 	bool getProjectorStatus(); //return whether projector is on (true) or off (false)
-	void setProjectorPort(int port); //the network port of the projector
-	void sendCommand(string command); //send any string command to the projector without password authentication
+	string getProjectorPowerStatus();
+	string getProjectorInputStatus();
+	string getProjectorLampStatus();
 
+	void parseResponse(string response);
+	void handleErrors(int error);
+
+	void setProjectorPort(int port); //the network port of the projector
+	string sendCommand(string command); //send any string command to the projector without password authentication
+	
 private:
 
 	void nec_On();
@@ -78,7 +90,7 @@ private:
 	string msgRx;
 	bool connected;
 	int commMode;
-
+	string statusString;
 };
 
 #endif

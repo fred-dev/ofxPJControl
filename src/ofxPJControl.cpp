@@ -25,6 +25,36 @@ bool ofxPJControl::getProjectorStatus() {
 	return projStatus;
 }
 
+string ofxPJControl::getProjectorPowerStatus()
+{
+	string command = "%1POWR ?\r";
+	return sendPJLinkCommand(command);
+}
+
+string ofxPJControl::getProjectorInputStatus()
+{
+	string command = "%INPT ?\r";
+	return sendPJLinkCommand(command);
+}
+
+string ofxPJControl::getProjectorLampStatus()
+{
+	string command = "%LAMP ?\r";
+	return sendPJLinkCommand(command);
+}
+
+void ofxPJControl::parseResponse(string response)
+{
+	if (response == "%1POWR 1");
+	{
+
+	}
+}
+
+void ofxPJControl::handleErrors(int error)
+{
+}
+
 void ofxPJControl::setProjectorType(int protocol) { //NEC_MODE or PJLINK_MODE
 		commMode = protocol;
 }
@@ -85,7 +115,33 @@ void ofxPJControl::Off(){
     }
 }
 
-void ofxPJControl::sendPJLinkCommand(string command) {
+string ofxPJControl::mute()
+{
+	string command = "%1AVMT 11\r";
+	return sendPJLinkCommand(command);
+}
+
+string ofxPJControl::unmute()
+{
+	string command = "%1AVMT 10\r";
+	return sendPJLinkCommand(command);
+}
+
+string ofxPJControl::getStatus()
+{
+	string command = "%1POWR 1\r";
+	
+	return sendPJLinkCommand(command);
+}
+
+string ofxPJControl::setInput(int type, int input)
+{
+	string command = "%1INPT "+ ofToString(type) + ofToString(input) + "\r";
+	
+	return sendPJLinkCommand(command);
+}
+
+string ofxPJControl::sendPJLinkCommand(string command) {
 		string msgRx="";
 
         if(!pjClient.isConnected()) {
@@ -101,6 +157,7 @@ void ofxPJControl::sendPJLinkCommand(string command) {
             } else {
                 ofLogError() << "faled to connect."<<endl;
             }
+			return msgRx;
 		}
     
     if(connected){
@@ -123,7 +180,7 @@ void ofxPJControl::sendPJLinkCommand(string command) {
 			msgRx = pjClient.receiveRaw();
 		}
         ofLogNotice() << "received response: " << msgRx << endl;
-
+		return msgRx;
         pjClient.close();
 		//connected = false;
     } else {
@@ -133,7 +190,7 @@ void ofxPJControl::sendPJLinkCommand(string command) {
     }
 }
 
-void ofxPJControl::sendCommand(string command){
+string ofxPJControl::sendCommand(string command){
         if(!pjClient.isConnected()) {
 			pjClient.setVerbose(true);
 			ofLogNotice() << "connecting to : " << IPAddress << ":" << pjPort << endl;
@@ -148,6 +205,7 @@ void ofxPJControl::sendCommand(string command){
         ofLogNotice() << "received response : " << msgRx << endl;
 
         pjClient.close();
+		return msgRx;
 }
 
 void ofxPJControl::nec_On(){
