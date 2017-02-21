@@ -6,13 +6,13 @@ void ofApp::setup(){
     ofBackground(ofColor::black);
     
     projector.setup();
-    string myProjectorIP = "172.16.1.201";
+    string myProjectorIP = "192.168.0.8";
 
     //Plug an ethernet into your projector and check it settings to find this IP
     projector.setProjectorIP(myProjectorIP);
     
     //You can set a password on your projector to access PJ Link
-    projector.setProjectorPassword("somePassword");
+    projector.setProjectorPassword("panasonic");
     projector.setProjectorType(PJLINK_MODE);
     
     
@@ -57,6 +57,95 @@ void ofApp::keyPressed(int key){
         cout << projector.getProjectorStatus() << endl;
         colorDebug = ofColor::crimson;
     }
+    
+    if (key == '3') {
+        projector.mute();
+        cout << projector.getProjectorStatus() << endl;
+        colorDebug = ofColor::crimson;
+    }
+    
+    if (key == '4') {
+        projector.unmute();
+        cout << projector.getProjectorStatus() << endl;
+        colorDebug = ofColor::crimson;
+    }
+    
+    if (key == '5') {
+        projector.setInput(3,1);
+        cout << projector.getProjectorStatus() << endl;
+        colorDebug = ofColor::crimson;
+    }
+    
+    if (key == '6') {
+        projector.setInput(3,2);
+        cout << projector.getProjectorStatus() << endl;
+        colorDebug = ofColor::crimson;
+    }
+    
+    if (key == '7') {
+        projector.setInput(1,2);
+        cout << projector.getProjectorStatus() << endl;
+        colorDebug = ofColor::crimson;
+    }
+    
+    if (key == '8') {
+        projector.setInput(1,1);
+        cout << projector.getProjectorStatus() << endl;
+        colorDebug = ofColor::crimson;
+    }
+    if (key == '9') {
+        projector.setInput(2,1);
+        cout << projector.getProjectorStatus() << endl;
+        colorDebug = ofColor::crimson;
+    }
+    if (key == '0') {
+        projector.setInput(3,3);
+        cout << projector.getProjectorStatus() << endl;
+        colorDebug = ofColor::crimson;
+    }
+    
+    if (key == 'a') {
+        projector.getProjectorLampStatus();
+        cout << projector.getProjectorStatus() << endl;
+        colorDebug = ofColor::crimson;
+    }
+    
+    if (key == 's') {
+        projector.getProjectorInputStatus();
+        cout << projector.getProjectorStatus() << endl;
+        colorDebug = ofColor::crimson;
+    }
+    
+    if (key == 'd') {
+        projector.getProjectorPowerStatus();
+        cout << projector.getProjectorStatus() << endl;
+        colorDebug = ofColor::crimson;
+    }
+
+	if (key == 'f') {
+		projector.getProjectorName();
+		cout << projector.getProjectorStatus() << endl;
+		colorDebug = ofColor::crimson;
+	}
+
+	if (key == 'g') {
+		projector.getProjectorInputList();
+		cout << projector.getProjectorStatus() << endl;
+		colorDebug = ofColor::crimson;
+	}
+
+	if (key == 'h') {
+		projector.getProjectorManufacturer();
+		cout << projector.getProjectorStatus() << endl;
+		colorDebug = ofColor::crimson;
+	}
+
+	if (key == 'j') {
+		projector.getProjectorPowerStatus();
+		cout << projector.getProjectorStatus() << endl;
+		colorDebug = ofColor::crimson;
+	}
+
     
 }
 

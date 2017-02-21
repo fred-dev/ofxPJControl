@@ -1,0 +1,21 @@
+﻿  ofApp.cpp
+c:\users\mexic\dropbox\code\of_gitt\openframeworks\libs\openframeworks\math\ofMatrix4x4.h(323): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+c:\users\mexic\dropbox\code\of_gitt\openframeworks\libs\openframeworks\math\ofMatrix4x4.h(328): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+c:\users\mexic\dropbox\code\of_gitt\openframeworks\libs\openframeworks\math\ofMatrix4x4.h(957): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+c:\users\mexic\dropbox\code\of_gitt\openframeworks\libs\openframeworks\math\ofMatrix4x4.h(958): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+c:\users\mexic\dropbox\code\of_gitt\openframeworks\libs\openframeworks\math\ofMatrix4x4.h(959): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+c:\users\mexic\dropbox\code\of_gitt\openframeworks\libs\openframeworks\math\ofMatrix4x4.h(960): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+     Creating library bin\ofxPJControl_Example.lib and object bin\ofxPJControl_Example.exp
+  Generating code
+  0 of 1 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  ofxPJControl_Example.vcxproj -> C:\Users\mexic\Dropbox\Code\OF_GITT\openFrameworks\addons\ofxPJControl\ofxPJControl_Example\bin\ofxPJControl_Example.exe
+  
+  	                   2	C:\Users\mexic\Dropbox\Code\OF_GITT\openFrameworks\libs\fmodex\lib\vs\x64\
+  	  *EXTRA File 		 6402560	C:\Users\mexic\Dropbox\Code\OF_GITT\openFrameworks\addons\ofxPJControl\ofxPJControl_Example\bin\FreeImage.dll
+  
+  	                   1	C:\Users\mexic\Dropbox\Code\OF_GITT\openFrameworks\libs\FreeImage\lib\vs\x64\
+  	  *EXTRA File 		 1503232	C:\Users\mexic\Dropbox\Code\OF_GITT\openFrameworks\addons\ofxPJControl\ofxPJControl_Example\bin\fmodex64.dll
+  	  *EXTRA File 		 1552384	C:\Users\mexic\Dropbox\Code\OF_GITT\openFrameworks\addons\ofxPJControl\ofxPJControl_Example\bin\fmodexL64.dll

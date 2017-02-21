@@ -21,38 +21,68 @@ ofxPJControl::~ofxPJControl() {
 
 }
 
+void ofxPJControl::getProjectorPowerStatus()
+{
+    string command = "%1POWR ?\r";
+     sendPJLinkCommand(command);
+}
+
+void ofxPJControl::getProjectorInputStatus()
+{
+    string command = "%1INPT ?\r";
+     sendPJLinkCommand(command);
+}
+
+void ofxPJControl::getProjectorLampStatus()
+{
+    string command = "%1LAMP ?\r";
+     sendPJLinkCommand(command);
+}
+
+void ofxPJControl::getProjectorManufacturer(){
+    string command = "%1INF1 ?\r";
+    sendPJLinkCommand(command);
+}
+
+void ofxPJControl::getProjectorName(){
+    string command = "%1NAME ?\r";
+    sendPJLinkCommand(command);
+}
+
+void ofxPJControl::getProjectorInputList(){
+    string command = "%1INST ?\r";
+    sendPJLinkCommand(command);
+}
+
+void ofxPJControl::mute()
+{
+    string command = "%1AVMT 31\r";
+     sendPJLinkCommand(command);
+}
+
+void ofxPJControl::unmute()
+{
+    string command = "%1AVMT 30\r";
+     sendPJLinkCommand(command);
+}
+
+void ofxPJControl::getStatus()
+{
+    string command = "%1POWR 1\r";
+    
+     sendPJLinkCommand(command);
+}
+
+void ofxPJControl::setInput(int type, int input)
+{
+    string command = "%1INPT "+ ofToString(type) + ofToString(input) + "\r";
+    
+     sendPJLinkCommand(command);
+}
+
+
 bool ofxPJControl::getProjectorStatus() {
 	return projStatus;
-}
-
-string ofxPJControl::getProjectorPowerStatus()
-{
-	string command = "%1POWR ?\r";
-	return sendPJLinkCommand(command);
-}
-
-string ofxPJControl::getProjectorInputStatus()
-{
-	string command = "%INPT ?\r";
-	return sendPJLinkCommand(command);
-}
-
-string ofxPJControl::getProjectorLampStatus()
-{
-	string command = "%LAMP ?\r";
-	return sendPJLinkCommand(command);
-}
-
-void ofxPJControl::parseResponse(string response)
-{
-	if (response == "%1POWR 1");
-	{
-
-	}
-}
-
-void ofxPJControl::handleErrors(int error)
-{
 }
 
 void ofxPJControl::setProjectorType(int protocol) { //NEC_MODE or PJLINK_MODE
@@ -115,33 +145,7 @@ void ofxPJControl::Off(){
     }
 }
 
-string ofxPJControl::mute()
-{
-	string command = "%1AVMT 11\r";
-	return sendPJLinkCommand(command);
-}
-
-string ofxPJControl::unmute()
-{
-	string command = "%1AVMT 10\r";
-	return sendPJLinkCommand(command);
-}
-
-string ofxPJControl::getStatus()
-{
-	string command = "%1POWR 1\r";
-	
-	return sendPJLinkCommand(command);
-}
-
-string ofxPJControl::setInput(int type, int input)
-{
-	string command = "%1INPT "+ ofToString(type) + ofToString(input) + "\r";
-	
-	return sendPJLinkCommand(command);
-}
-
-string ofxPJControl::sendPJLinkCommand(string command) {
+void ofxPJControl::sendPJLinkCommand(string command) {
 		string msgRx="";
 
         if(!pjClient.isConnected()) {
@@ -157,7 +161,6 @@ string ofxPJControl::sendPJLinkCommand(string command) {
             } else {
                 ofLogError() << "faled to connect."<<endl;
             }
-			return msgRx;
 		}
     
     if(connected){
@@ -180,7 +183,7 @@ string ofxPJControl::sendPJLinkCommand(string command) {
 			msgRx = pjClient.receiveRaw();
 		}
         ofLogNotice() << "received response: " << msgRx << endl;
-		return msgRx;
+
         pjClient.close();
 		//connected = false;
     } else {
@@ -190,7 +193,7 @@ string ofxPJControl::sendPJLinkCommand(string command) {
     }
 }
 
-string ofxPJControl::sendCommand(string command){
+void ofxPJControl::sendCommand(string command){
         if(!pjClient.isConnected()) {
 			pjClient.setVerbose(true);
 			ofLogNotice() << "connecting to : " << IPAddress << ":" << pjPort << endl;
@@ -205,7 +208,6 @@ string ofxPJControl::sendCommand(string command){
         ofLogNotice() << "received response : " << msgRx << endl;
 
         pjClient.close();
-		return msgRx;
 }
 
 void ofxPJControl::nec_On(){
